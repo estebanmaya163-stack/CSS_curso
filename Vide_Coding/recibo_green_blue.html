@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibo Green & Blue Aquamarine</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #c8c8c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+  }
+
+  .recibo {
+    background: #dff0f5;
+    border: 2px solid #4a7fbf;
+    width: 720px;
+    padding: 14px 16px 12px 16px;
+  }
+
+  /* ── ROW 1: HEADER ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 10px;
+  }
+
+  .logo { line-height: 1.15; }
+
+  .logo-line1 {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+  }
+
+  .logo .green {
+    font-size: 26px; font-weight: 700; color: #2e7d32;
+    font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+  }
+  .logo .amp {
+    font-size: 26px; font-weight: 700; color: #1a5276;
+    font-family: 'Oswald', sans-serif;
+  }
+  .logo .blue {
+    font-size: 26px; font-weight: 700; color: #1a5276;
+    font-family: 'Oswald', sans-serif; letter-spacing: 1px;
+  }
+  .logo .aquamarine {
+    display: block; font-size: 13px; color: #1a8fa0;
+    font-style: italic; letter-spacing: 3px; margin-top: 1px;
+  }
+  .logo .slogan {
+    font-size: 7.5px; color: #555; margin-top: 3px; line-height: 1.3;
+  }
+
+  /* SERVICES - center header */
+  .services-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .services-row {
+    display: flex;
+    gap: 18px;
+    flex-wrap: nowrap;
+  }
+
+  .service-item {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 9.5px; color: #1a5276; font-weight: 600; letter-spacing: 0.5px;
+  }
+
+  .checkbox {
+    width: 11px; height: 11px;
+    border: 1.5px solid #1a5276; display: inline-block; flex-shrink: 0;
+  }
+
+  .phone-row {
+    font-size: 9px; color: #333;
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* RECIBO BOX */
+  .recibo-box {
+    border: 1.5px solid #4a7fbf;
+    padding: 4px 12px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .recibo-box .recibo-title {
+    font-size: 11px; font-weight: 700; color: #1a5276;
+    letter-spacing: 1px; border-bottom: 1px solid #4a7fbf;
+    padding-bottom: 2px; margin-bottom: 4px;
+  }
+  .recibo-box .no-label { font-size: 10px; color: #333; }
+  .recibo-box .no-value {
+    font-size: 18px; font-weight: 700; color: #1a5276; letter-spacing: 1px;
+  }
+
+  /* ── ROW 2: DATES + SEÑOR + TELÉFONO/CIUDAD ── */
+  .row2 {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 6px;
+    align-items: flex-end;
+  }
+
+  .dates-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  .date-group {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .date-label {
+    font-size: 8px; color: #1a5276; font-weight: 600;
+  }
+  .date-boxes {
+    display: flex; gap: 3px;
+  }
+  .date-box {
+    width: 24px; height: 20px; border: 1.5px solid #4a7fbf; background: transparent;
+  }
+
+  /* fields */
+  .field {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .field-label {
+    font-size: 9px; color: #1a5276; font-weight: 600;
+  }
+  .field-line {
+    border: none; border-bottom: 1.2px solid #4a7fbf;
+    background: transparent; height: 18px; width: 100%;
+    outline: none; font-size: 11px; color: #222; padding: 0 2px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── ROW 3: DIRECCIÓN + EDAD + PESO + TALLA ── */
+  .row3 {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: flex-end;
+  }
+
+  /* ── DESCRIPCIÓN TITLE ── */
+  .section-title {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: #1a5276; letter-spacing: 2px;
+    border-top: 1.5px solid #4a7fbf; border-bottom: 1.5px solid #4a7fbf;
+    padding: 3px 0; margin-bottom: 4px;
+  }
+
+  /* ── MAIN TABLE: OBSERVACIONES | DESCRIPCIÓN | TOTALES ── */
+  .main-table {
+    display: flex;
+    border: 1.5px solid #4a7fbf;
+    margin-bottom: 8px;
+    min-height: 90px;
+  }
+
+  .obs-col {
+    width: 34px;
+    border-right: 1.5px solid #4a7fbf;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6px 0;
+  }
+  .obs-label {
+    font-size: 9px; font-weight: 700; color: #1a5276; letter-spacing: 0.5px;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+
+  .desc-col {
+    flex: 1;
+    border-right: 1.5px solid #4a7fbf;
+    padding: 4px 6px;
+  }
+
+  .totals-col {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .vr-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1.5px solid #4a7fbf;
+    padding: 4px 6px;
+    gap: 6px;
+  }
+  .vr-row:last-child { border-bottom: none; }
+
+  .vr-label {
+    font-size: 8.5px; font-weight: 700; color: #1a5276;
+    white-space: nowrap; min-width: 50px;
+  }
+
+  .vr-input {
+    border: none; border-bottom: 1.2px solid #4a7fbf;
+    background: transparent; flex: 1; height: 16px;
+    outline: none; font-size: 10px; color: #222;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* TOTAL box */
+  .total-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .total-title {
+    font-size: 10px; font-weight: 700; color: #1a5276;
+    letter-spacing: 1px; text-align: center;
+    border-bottom: 1.5px solid #4a7fbf;
+    padding: 3px 0;
+  }
+  .total-amount {
+    flex: 1;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 4px 8px;
+  }
+  .total-currency { font-size: 12px; font-weight: 700; color: #1a5276; }
+  .total-input {
+    border: none; background: transparent;
+    flex: 1; margin-left: 4px; font-size: 11px;
+    outline: none; text-align: right; color: #222;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── FIRMAS ── */
+  .firmas-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 4px;
+  }
+
+  .firma {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  }
+  .firma-line {
+    width: 100%; border-bottom: 1.2px solid #4a7fbf; height: 22px;
+  }
+  .firma-label {
+    font-size: 8.5px; color: #1a5276; font-weight: 700; letter-spacing: 0.5px;
+  }
+
+  @media print {
+    @page { size: landscape; margin: 10mm; }
+    body { background: white; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="recibo">
+
+  <!-- ROW 1: LOGO | SERVICES+PHONE | RECIBO -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-line1">
+        <span class="green">GREEN</span>
+        <span class="amp">&amp;</span>
+        <span class="blue">BLUE</span>
+      </div>
+      <span class="aquamarine">a q u a m a r i n e</span>
+      <div class="slogan">Efecto y prevención en la funcionalidad física</div>
+    </div>
+
+    <div class="services-block">
+      <div class="services-row">
+        <div class="service-item"><span class="checkbox"></span> REHABILITACIÓN</div>
+        <div class="service-item"><span class="checkbox"></span> ENTRENAMIENTO</div>
+        <div class="service-item"><span class="checkbox"></span> MASAJES</div>
+        <div class="service-item"><span class="checkbox"></span> NATACIÓN</div>
+      </div>
+      <div class="phone-row">📞 318 868 8008 / 310 740 6038</div>
+    </div>
+
+    <div class="recibo-box">
+      <div class="recibo-title">RECIBO</div>
+      <div class="no-label">No.</div>
+      <div class="no-value">0459</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: FECHAS + SEÑOR + TELÉFONO + CIUDAD -->
+  <div class="row2">
+    <div class="dates-group">
+      <div class="date-group">
+        <div class="date-label">Fecha Inicio</div>
+        <div class="date-boxes">
+          <div class="date-box"></div>
+          <div class="date-box"></div>
+          <div class="date-box"></div>
+        </div>
+      </div>
+      <div class="date-group">
+        <div class="date-label">Fecha Finalización</div>
+        <div class="date-boxes">
+          <div class="date-box"></div>
+          <div class="date-box"></div>
+          <div class="date-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field" style="flex:2">
+      <span class="field-label">Señor (es):</span>
+      <input class="field-line" type="text">
+    </div>
+
+    <div class="field" style="flex:1">
+      <span class="field-label">Teléfono:</span>
+      <input class="field-line" type="text">
+    </div>
+
+    <div class="field" style="flex:1">
+      <span class="field-label">Ciudad:</span>
+      <input class="field-line" type="text">
+    </div>
+  </div>
+
+  <!-- ROW 3: DIRECCIÓN + EDAD + PESO + TALLA -->
+  <div class="row3">
+    <div class="field" style="flex:3">
+      <span class="field-label">Dirección:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Edad:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Peso:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Talla:</span>
+      <input class="field-line" type="text">
+    </div>
+  </div>
+
+  <!-- DESCRIPCIÓN TITLE -->
+  <div class="section-title">DESCRIPCIÓN</div>
+
+  <!-- MAIN TABLE -->
+  <div class="main-table">
+    <div class="obs-col">
+      <span class="obs-label">OBSERVACIONES</span>
+    </div>
+
+    <div class="desc-col"></div>
+
+    <div class="totals-col">
+      <div class="total-title">TOTAL</div>
+      <div class="vr-row">
+        <span class="vr-label">PPL.:</span>
+        <input class="vr-input" type="text">
+      </div>
+      <div class="vr-row">
+        <span class="vr-label">VR. TOTAL</span>
+        <input class="vr-input" type="text">
+      </div>
+      <div class="total-section">
+        <div class="total-amount">
+          <span class="total-currency">$</span>
+          <input class="total-input" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRMAS -->
+  <div class="firmas-row">
+    <div class="firma">
+      <div class="firma-line"></div>
+      <div class="firma-label">FIRMA DEL INSTRUCTOR</div>
+    </div>
+    <div class="firma">
+      <div class="firma-line"></div>
+      <div class="firma-label">FIRMA DEL USUARIO</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
