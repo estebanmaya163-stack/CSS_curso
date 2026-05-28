@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recibo Green & Blue Aquamarine</title>
+<style>
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #c8c8c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+  }
+
+  .recibo {
+    background: #dff0f5;
+    border: 2px solid #4a7fbf;
+    width: 750px;
+    padding: 14px 16px 14px 16px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .logo { line-height: 1.15; }
+  .logo-line1 { display: flex; align-items: baseline; gap: 2px; }
+  .logo .green  { font-size: 26px; font-weight: 700; color: #2e7d32; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+  .logo .amp    { font-size: 26px; font-weight: 700; color: #1a5276; font-family: 'Oswald', sans-serif; }
+  .logo .blue   { font-size: 26px; font-weight: 700; color: #1a5276; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+  .logo .aquamarine { display: block; font-size: 13px; color: #1a8fa0; font-style: italic; letter-spacing: 3px; margin-top: 1px; }
+  .logo .slogan { font-size: 7.5px; color: #555; margin-top: 3px; line-height: 1.3; }
+
+  .services-block {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .services-row { display: flex; gap: 18px; flex-wrap: nowrap; }
+  .service-item {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 9.5px; color: #1a5276; font-weight: 600; letter-spacing: 0.5px;
+    cursor: pointer; user-select: none;
+  }
+  .checkbox {
+    width: 12px; height: 12px;
+    border: 1.5px solid #1a5276;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 9px; color: #1a5276; font-weight: 700;
+    cursor: pointer;
+  }
+  .phone-row { font-size: 9px; color: #333; display: flex; align-items: center; gap: 4px; }
+
+  .recibo-box {
+    border: 1.5px solid #4a7fbf; padding: 4px 12px; text-align: center; min-width: 90px;
+  }
+  .recibo-box .recibo-title {
+    font-size: 11px; font-weight: 700; color: #1a5276; letter-spacing: 1px;
+    border-bottom: 1px solid #4a7fbf; padding-bottom: 2px; margin-bottom: 4px;
+  }
+  .recibo-box .no-label { font-size: 10px; color: #333; }
+  .recibo-box .no-value { font-size: 18px; font-weight: 700; color: #1a5276; letter-spacing: 1px; }
+  .no-input {
+    border: none; background: transparent; font-size: 18px; font-weight: 700;
+    color: #1a5276; letter-spacing: 1px; text-align: center;
+    width: 70px; outline: none; font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── FIELD HELPERS ── */
+  .row { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-end; }
+
+  .field { display: flex; flex-direction: column; gap: 2px; }
+  .field-label { font-size: 9px; color: #1a5276; font-weight: 600; }
+  .field-line {
+    border: none; border-bottom: 1.2px solid #4a7fbf;
+    background: transparent; height: 18px; width: 100%;
+    outline: none; font-size: 11px; color: #222; padding: 0 2px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── DATES ── */
+  .date-group { display: flex; flex-direction: column; gap: 3px; }
+  .date-label { font-size: 8px; color: #1a5276; font-weight: 600; }
+  .date-boxes { display: flex; gap: 3px; }
+  .date-box {
+    width: 26px; height: 20px; border: 1.5px solid #4a7fbf;
+    background: transparent; text-align: center; font-size: 10px;
+    outline: none; color: #222; font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── SECCIÓN TÍTULO ── */
+  .titles-row {
+    display: flex;
+    border: 1.5px solid #4a7fbf;
+    border-bottom: 1.5px solid #4a7fbf;
+    margin-top: 8px;
+  }
+
+  .section-title {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: #1a5276; letter-spacing: 2px;
+    border-top: none; border-bottom: none;
+    padding: 3px 0;
+  }
+
+  /* ── BLOQUE DESCRIPCIÓN + OBSERVACIONES + TOTAL ── */
+  .content-area {
+    display: flex;
+    border: 1.5px solid #4a7fbf;
+    border-top: none;
+  }
+
+  /* Columna izquierda: descripción encima, observaciones abajo */
+  .left-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-right: 1.5px solid #4a7fbf;
+  }
+
+  .desc-area {
+    flex: 1;
+    border-bottom: 1.5px solid #4a7fbf;
+  }
+  .desc-textarea {
+    width: 100%; height: 100px;
+    border: none; background: transparent;
+    resize: none; outline: none;
+    font-size: 11px; color: #222; padding: 6px 8px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .obs-area { }
+  .obs-header {
+    font-size: 9px; font-weight: 700; color: #1a5276;
+    letter-spacing: 0.5px; padding: 4px 8px;
+    border-bottom: 1px solid #4a7fbf;
+  }
+  .obs-textarea {
+    width: 100%; height: 60px;
+    border: none; background: transparent;
+    resize: none; outline: none;
+    font-size: 11px; color: #222; padding: 4px 8px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* Columna derecha: TOTAL */
+  .right-col {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .vr-title {
+    text-align: center; font-size: 11px; font-weight: 700;
+    color: #1a5276; letter-spacing: 2px;
+    border-top: 1.5px solid #4a7fbf;
+    border-bottom: 1.5px solid #4a7fbf;
+    padding: 3px 0;
+  }
+  .total-box { }
+  .total-label {
+    font-size: 10px; font-weight: 700; color: #1a5276;
+    letter-spacing: 1px; text-align: center;
+    border-bottom: 1.5px solid #4a7fbf;
+    padding: 3px 0;
+  }
+  .total-amount {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 10px;
+  }
+  .total-currency { font-size: 13px; font-weight: 700; color: #1a5276; }
+  .total-input {
+    border: none; background: transparent; flex: 1; margin-left: 4px;
+    font-size: 12px; font-weight: 600; outline: none; text-align: right;
+    color: #222; font-family: 'Open Sans', sans-serif;
+  }
+
+  /* ── FIRMAS ── */
+  .firmas-row {
+    display: flex; justify-content: space-around; gap: 30px; margin-top: 10px;
+  }
+  .firma { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .firma-line { width: 100%; border-bottom: 1.2px solid #4a7fbf; height: 22px; }
+  .firma-label { font-size: 8.5px; color: #1a5276; font-weight: 700; letter-spacing: 0.5px; }
+
+  @media print {
+    @page { size: landscape; margin: 10mm; }
+    body { background: white; padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="recibo">
+
+  <!-- HEADER: logo | servicios | recibo# -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-line1">
+        <span class="green">GREEN</span>
+        <span class="amp">&amp;</span>
+        <span class="blue">BLUE</span>
+      </div>
+      <span class="aquamarine">a q u a m a r i n e</span>
+      <div class="slogan">Efecto y prevención en la funcionalidad física</div>
+    </div>
+
+    <div class="services-block">
+      <div class="services-row">
+        <div class="service-item" onclick="toggle(this)"><span class="checkbox"></span> REHABILITACIÓN</div>
+        <div class="service-item" onclick="toggle(this)"><span class="checkbox"></span> ENTRENAMIENTO</div>
+        <div class="service-item" onclick="toggle(this)"><span class="checkbox"></span> MASAJES</div>
+        <div class="service-item" onclick="toggle(this)"><span class="checkbox"></span> NATACIÓN</div>
+      </div>
+      <div class="phone-row">📞 318 868 8008 / 310 740 6038</div>
+    </div>
+
+    <div class="recibo-box">
+      <div class="recibo-title">RECIBO</div>
+      <div class="no-label">No.</div>
+      <input class="no-input" type="text" value="0459">
+    </div>
+  </div>
+
+  <!-- ROW 2: FECHAS + SEÑOR + TELÉFONO + CIUDAD -->
+  <div class="row">
+    <div style="display:flex;gap:10px;">
+      <div class="date-group">
+        <div class="date-label">Fecha Inicio</div>
+        <div class="date-boxes">
+          <input class="date-box" type="text" maxlength="2" placeholder="DD">
+          <input class="date-box" type="text" maxlength="2" placeholder="MM">
+          <input class="date-box" type="text" maxlength="4" style="width:34px" placeholder="AAAA">
+        </div>
+      </div>
+      <div class="date-group">
+        <div class="date-label">Fecha Finalización</div>
+        <div class="date-boxes">
+          <input class="date-box" type="text" maxlength="2" placeholder="DD">
+          <input class="date-box" type="text" maxlength="2" placeholder="MM">
+          <input class="date-box" type="text" maxlength="4" style="width:34px" placeholder="AAAA">
+        </div>
+      </div>
+    </div>
+    <div class="field" style="flex:2.5">
+      <span class="field-label">Señor (es):</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:1.2">
+      <span class="field-label">Teléfono:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:1">
+      <span class="field-label">Ciudad:</span>
+      <input class="field-line" type="text">
+    </div>
+  </div>
+
+  <!-- ROW 3: DIRECCIÓN + EDAD + PESO + TALLA -->
+  <div class="row">
+    <div class="field" style="flex:3.5">
+      <span class="field-label">Dirección:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Edad:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Peso:</span>
+      <input class="field-line" type="text">
+    </div>
+    <div class="field" style="flex:0.8">
+      <span class="field-label">Talla:</span>
+      <input class="field-line" type="text">
+    </div>
+  </div>
+
+  <!-- TÍTULOS: DESCRIPCIÓN | VR. TOTAL -->
+  <div class="titles-row">
+    <div class="section-title" style="flex:1;border-right:1.5px solid #4a7fbf;">DESCRIPCIÓN</div>
+    <div class="section-title" style="width:150px;">VR. TOTAL</div>
+  </div>
+
+  <!-- CONTENIDO: desc arriba, obs abajo | total derecha -->
+  <div class="content-area">
+    <div class="left-col">
+      <div class="desc-area">
+        <textarea class="desc-textarea" placeholder="Escriba la descripción aquí..."></textarea>
+      </div>
+      <div class="obs-area">
+        <div class="obs-header">OBSERVACIONES</div>
+        <textarea class="obs-textarea" placeholder="Observaciones..."></textarea>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="total-box">
+        <div class="total-label">TOTAL</div>
+        <div class="total-amount">
+          <span class="total-currency">$</span>
+          <input class="total-input" type="text" placeholder="0.00">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIRMAS -->
+  <div class="firmas-row">
+    <div class="firma">
+      <div class="firma-line"></div>
+      <div class="firma-label">FIRMA DEL INSTRUCTOR</div>
+    </div>
+    <div class="firma">
+      <div class="firma-line"></div>
+      <div class="firma-label">FIRMA DEL USUARIO</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(el) {
+    const box = el.querySelector('.checkbox');
+    box.textContent = box.textContent === '✓' ? '' : '✓';
+  }
+</script>
+
+</body>
+</html>
